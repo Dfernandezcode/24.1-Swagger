@@ -17,6 +17,7 @@
     "seed:course-and-student": "ts-node-dev ./src/seeds/course-and-student.seed.ts --ignore-watch",
     "start": "ts-node-dev --inspect -- ./src/index.ts",
     "start:pro": "npm run build && node ./dist/index.js",
+    "build:swagger-json": "ts-node-dev ./src/utils/generate-swagger-json.ts --ignore-watch",
     "build": "tsc"
   },
   "keywords": [],
