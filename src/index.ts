@@ -11,6 +11,11 @@ import { mongoConnect } from "./databases/mongo-db";
 import { sqlConnect } from "./databases/sql-db";
 import { AppDataSource } from "./databases/typeorm-datasource";
 
+import { swaggerOptions } from "./swagger-options";
+import swaggerJsDoc from "swagger-jsdoc";
+import swaggerUiExpress from "swagger-ui-express";
+// --------------------------------------------------------------------------------------------
+
 const main = async (): Promise<void> => {
   // Conexión a la BBDD
   const mongoDatabase = await mongoConnect();
@@ -23,6 +28,11 @@ const main = async (): Promise<void> => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(cors({ origin: "http://localhost:3000" }));
+
+  // Indicate to index.ts to open Swagger server in .api-docs
+  // Swagger
+  const specs = swaggerJsDoc(swaggerOptions);
+  app.use("/api-docs", swaggerUiExpress.serve, swaggerUiExpress.setup(specs));
 
   //  Middlewares de aplicación
   app.use((req: Request, res: Response, next: NextFunction) => {

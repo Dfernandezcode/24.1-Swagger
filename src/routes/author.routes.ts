@@ -11,7 +11,39 @@ const upload = multer({ dest: "public" });
 // Router propio de libros
 export const authorRouter = express.Router();
 
-// Middleware de paginación
+// Middleware for page requests
+// _________________________________________________________________
+
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *    Author:
+ *      type: object
+ *      required:
+ *        - email
+ *        - password
+ *        - name
+ *        - country
+ *      properties:
+ *        email:
+ *          type: string
+ *          format: email
+ *          description: Email of the author (e.g., john@example.com)
+ *        password:
+ *          type: string
+ *          format: password
+ *          description: Password of the author (min 8 characters)
+ *        name:
+ *          type: string
+ *          description: Name of the author (min 3 characters, max 30 characters)
+ *        country:
+ *          type: string
+ *          description: Country of the author (uppercase, e.g., SPAIN)
+ *        profileImage:
+ *          type: string
+ *          description: URL of the author's profile image (optional)
+ */
 authorRouter.get("/", (req: Request, res: Response, next: NextFunction) => {
   try {
     console.log("Estamos en el middleware /car que comprueba parámetros");
@@ -32,8 +64,73 @@ authorRouter.get("/", (req: Request, res: Response, next: NextFunction) => {
     next(error);
   }
 });
+// _________________________________________________________________
 
 // CRUD: READ
+/* GET /authors
+   Get a list of authors with pagination */
+
+/**
+ * @swagger
+ * /authors:
+ *  get:
+ *    summary: Get a list of authors with pagination
+ *    parameters:
+ *      - in: query
+ *        name: page
+ *        schema:
+ *          type: integer
+ *          minimum: 1
+ *        description: Page number for pagination
+ *      - in: query
+ *        name: limit
+ *        schema:
+ *          type: integer
+ *          minimum: 1
+ *        description: Maximum number of authors per page
+ *    responses:
+ *      200:
+ *        description: List of authors with pagination details
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                totalItems:
+ *                  type: integer
+ *                  description: Total number of authors
+ *                totalPages:
+ *                  type: integer
+ *                  description: Total number of pages
+ *                currentPage:
+ *                  type: integer
+ *                  description: Current page number
+ *                data:
+ *                  type: array
+ *                  items:
+ *                    $ref: '#/components/schemas/Author'
+ *      400:
+ *        description: Invalid query parameters
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                error:
+ *                  type: string
+ *                  description: Error message
+ *      500:
+ *        description: Internal server error
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                error:
+ *                  type: string
+ *                  description: Error message
+ */
+
 authorRouter.get("/", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { page, limit }: any = req.query;
@@ -54,8 +151,53 @@ authorRouter.get("/", async (req: Request, res: Response, next: NextFunction) =>
     next(error);
   }
 });
+// _________________________________________________________________
 
 // CRUD: READ
+/* GET /authors/:id
+   Get an author by ID */
+
+/**
+ * @swagger
+ * /authors/{id}:
+ *  get:
+ *    summary: Get an author by ID
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: ID of the author
+ *    responses:
+ *      200:
+ *        description: Author found
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Author'
+ *      404:
+ *        description: Author not found
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                error:
+ *                  type: string
+ *                  description: Error message
+ *      500:
+ *        description: Internal server error
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                error:
+ *                  type: string
+ *                  description: Error message
+ */
+
 authorRouter.get("/:id", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const id = req.params.id;
@@ -77,6 +219,50 @@ authorRouter.get("/:id", async (req: Request, res: Response, next: NextFunction)
     next(error);
   }
 });
+// _________________________________________________________________
+/* GET /authors/name/:name
+   Search authors by name */
+
+/**
+ * @swagger
+ * /authors/name/{name}:
+ *  get:
+ *    summary: Search authors by name
+ *    parameters:
+ *      - in: path
+ *        name: name
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: Name of the author to search
+ *    responses:
+ *      200:
+ *        description: Authors found
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: array
+ *              items:
+ *                $ref: '#/components/schemas/Author'
+ *      404:
+ *        description: Authors not found
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: array
+ *              items:
+ *                $ref: '#/components/schemas/Author'
+ *      500:
+ *        description: Internal server error
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                error:
+ *                  type: string
+ *                  description: Error message
+ */
 
 authorRouter.get("/name/:name", async (req: Request, res: Response, next: NextFunction) => {
   const name = req.params.name;
@@ -92,8 +278,74 @@ authorRouter.get("/name/:name", async (req: Request, res: Response, next: NextFu
     next(error);
   }
 });
-
+// _________________________________________________________________
 // LOGIN DE AUTORES
+/* POST /authors/login
+   Author login */
+
+/**
+ * @swagger
+ * /authors/login:
+ *  post:
+ *    summary: Author login
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              email:
+ *                type: string
+ *                format: email
+ *                description: Email of the author
+ *              password:
+ *                type: string
+ *                format: password
+ *                description: Password of the author
+ *    responses:
+ *      200:
+ *        description: Successful login
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                token:
+ *                  type: string
+ *                  description: JWT token for authentication
+ *      400:
+ *        description: Invalid request body
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                error:
+ *                  type: string
+ *                  description: Error message
+ *      401:
+ *        description: Unauthorized login
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                error:
+ *                  type: string
+ *                  description: Error message
+ *      500:
+ *        description: Internal server error
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                error:
+ *                  type: string
+ *                  description: Error message
+ */
+
 authorRouter.post("/login", async (req: Request, res: Response, next: NextFunction) => {
   try {
     // const email = req.body.email;
@@ -129,8 +381,41 @@ authorRouter.post("/login", async (req: Request, res: Response, next: NextFuncti
     next(error);
   }
 });
-
+// _____________________________________________________________________
 // CRUD: CREATE
+/* POST /authors
+   Create a new author */
+
+/**
+ * @swagger
+ * /authors:
+ *  post:
+ *    summary: Create a new author
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/Author'
+ *    responses:
+ *      201:
+ *        description: Author created
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Author'
+ *      500:
+ *        description: Internal server error
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                error:
+ *                  type: string
+ *                  description: Error message
+ */
+
 authorRouter.post("/", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const author = new Author(req.body);
@@ -142,7 +427,64 @@ authorRouter.post("/", async (req: Request, res: Response, next: NextFunction) =
   }
 });
 
+// _____________________________________________________________________
 // CRUD: DELETE
+/* DELETE /authors/:id
+   Delete an author by ID */
+
+/**
+ * @swagger
+ * /authors/{id}:
+ *  delete:
+ *    summary: Delete an author by ID
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: ID of the author to delete
+ *    security:
+ *      - bearerAuth: []
+ *    responses:
+ *      200:
+ *        description: Author deleted
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Author'
+ *      401:
+ *        description: Unauthorized operation
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                error:
+ *                  type: string
+ *                  description: Error message
+ *      404:
+ *        description: Author not found
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                error:
+ *                  type: string
+ *                  description: Error message
+ *      500:
+ *        description: Internal server error
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                error:
+ *                  type: string
+ *                  description: Error message
+ */
+
 authorRouter.delete("/:id", isAuth, async (req: any, res: Response, next: NextFunction) => {
   try {
     const id = req.params.id;
@@ -162,7 +504,70 @@ authorRouter.delete("/:id", isAuth, async (req: any, res: Response, next: NextFu
   }
 });
 
+// ____________________________________________________________________
 // CRUD: UPDATE
+/* PUT /authors/:id
+   Update an author by ID */
+
+/**
+ * @swagger
+ * /authors/{id}:
+ *  put:
+ *    summary: Update an author by ID
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: ID of the author to update
+ *    security:
+ *      - bearerAuth: []
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/Author'
+ *    responses:
+ *      200:
+ *        description: Author updated
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Author'
+ *      401:
+ *        description: Unauthorized operation
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                error:
+ *                  type: string
+ *                  description: Error message
+ *      404:
+ *        description: Author not found
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                error:
+ *                  type: string
+ *                  description: Error message
+ *      500:
+ *        description: Internal server error
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                error:
+ *                  type: string
+ *                  description: Error message
+ */
+
 authorRouter.put("/:id", isAuth, async (req: any, res: Response, next: NextFunction) => {
   try {
     const id = req.params.id;
@@ -186,6 +591,67 @@ authorRouter.put("/:id", isAuth, async (req: any, res: Response, next: NextFunct
     next(error);
   }
 });
+// ____________________________________________________________________
+/* POST /authors/logo-upload
+   Upload an author's logo */
+
+/**
+ * @swagger
+ * /authors/logo-upload:
+ *  post:
+ *    summary: Upload an author's logo
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        multipart/form-data:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              logo:
+ *                type: string
+ *                format: binary
+ *                description: Logo file to upload
+ *              authorId:
+ *                type: string
+ *                description: ID of the author
+ *    responses:
+ *      200:
+ *        description: Logo uploaded
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Author'
+ *      400:
+ *        description: Invalid request body
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                error:
+ *                  type: string
+ *                  description: Error message
+ *      404:
+ *        description: Author not found
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                error:
+ *                  type: string
+ *                  description: Error message
+ *      500:
+ *        description: Internal server error
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                error:
+ *                  type: string
+ *                  description: Error message
+ */
 
 authorRouter.post("/logo-upload", upload.single("logo"), async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -204,12 +670,21 @@ authorRouter.post("/logo-upload", upload.single("logo"), async (req: Request, re
       await author.save();
       res.json(author);
 
-      console.log("Autor modificado correctamente!");
+      console.log("Author modified correctly!!");
     } else {
       fs.unlinkSync(newPath);
-      res.status(404).send("Autor no encontrado");
+      res.status(404).send("Author not found");
     }
   } catch (error) {
     next(error);
   }
 });
+
+/**
+ * @swagger
+ * securitySchemes:
+ *  bearerAuth:
+ *    type: http
+ *    scheme: bearer
+ *    bearerFormat: JWT
+ */
