@@ -1,0 +1,950 @@
+{
+	"info": {
+		"_postman_id": "8a9e13fb-192e-4192-a60e-928dc5edd477",
+		"name": "Books-Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27147948"
+	},
+	"item": [
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "Get books",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/book?page=1&limit=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"book"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get book by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/book/644ad92c312fdbae4b8b93d9",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"book",
+								"644ad92c312fdbae4b8b93d9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search book by title",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/book/title/The tight mammoth",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"book",
+								"title",
+								"The tight mammoth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create book",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"The amazing Pacman\",\n    \"name\": \"Fede\",\n    \"pages\": \"1\",\n    \"publisher\": {\n        \"name\": \"mamwdwdam\",\n        \"country\": \"EEUU\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/book",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update book",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"jajajajajajjajajjajajajajajajajajjajaj\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/book/645cb0f87b0b8e2348fa1c68",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"book",
+								"645cb0f87b0b8e2348fa1c68"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete book",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/book/645cb0f87b0b8e2348fa1c68",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"book",
+								"645cb0f87b0b8e2348fa1c68"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Companies",
+			"item": [
+				{
+					"name": "Get companies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/company?page=1&limit=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"company"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get company by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/company/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"company",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search company by name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/company/name/Apple",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"company",
+								"name",
+								"Apple"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create company",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Friends\",\n    \"foundedYear\": 1994,\n    \"employeesNumber\": 6,\n    \"headquarters\": \"Madrid, Madrid, Spain\",\n    \"ceo\": \"Marta Kauffman & David Crane\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/company",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"company"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update company",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Friends\",\n    \"foundedYear\": 1994,\n    \"employeesNumber\": 6,\n    \"headquarters\": \"Madrid, Madrid, Spain\",\n    \"ceo\": \"Marta Kauffman & David Crane\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/company/4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"company",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete company",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/company/4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"company",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Students",
+			"item": [
+				{
+					"name": "Get students",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/student?page=1&limit=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"student"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get student by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/student/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"student",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search student by first name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/student/firstName/Juan",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"student",
+								"firstName",
+								"Juan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create student",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Chandler M.\",\n    \"lastName\": \"Bing\",\n    \"courseId\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/student",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"student"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update student",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Chandler M.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/student/5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"student",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete student",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/student/8",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"student",
+								"8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Courses Copy",
+			"item": [
+				{
+					"name": "Get courses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/course?page=1&limit=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"course"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get course by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/course/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"course",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search course by name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/course/name/Matemáticas",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"course",
+								"name",
+								"Matemáticas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create course",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Biología\",\n    \"department\": \"Naturales\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/course",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"course"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update course",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"department\": \"Naturales\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/course/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"course",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete course",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/course/4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"course",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authors",
+			"item": [
+				{
+					"name": "Get authors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/author?page=1&limit=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"author"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get author by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/author/64679044768bcb9de59204ed?includeBooks=true",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"author",
+								"64679044768bcb9de59204ed"
+							],
+							"query": [
+								{
+									"key": "includeBooks",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search author by title",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/author/name/Virginia Woolf",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"author",
+								"name",
+								"Virginia Woolf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create author",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Alex\",\n    \"country\": \"Spain\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/author",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"author"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update author",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JJZCI6IjY0NjY4ZDIxMmQxNDY0ZjhmZjExYWYyMyIsImF1dGhvckVtYWlsIjoiZXJueUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0NDI5MjMsImV4cCI6MTY4NDUyOTMyM30.xTqNoqdj6N-PJJbuXy6IJlIKMlxJ4o6oPVF4eDr7AZk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"H\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/author/64668d212d1464f8ff11af23",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"author",
+								"64668d212d1464f8ff11af23"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete author",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JJZCI6IjY0NjY3M2FjOTNhMGU1Nzk4MmQ3MjU0YyIsImF1dGhvckVtYWlsIjoiamFuZUBnbWFpbC5jb20iLCJpYXQiOjE2ODQ0NDIzMjksImV4cCI6MTY4NDUyODcyOX0.q0m4uUkr37qfssvxzAzOiawUnqTE-yJK8V59gADjpZw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/author/64668d212d1464f8ff11af1f",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"author",
+								"64668d212d1464f8ff11af1f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logo upload",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/Users/alex/Downloads/ernest.jpeg"
+								},
+								{
+									"key": "authorId",
+									"value": "64679044768bcb9de59204f1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/author/logo-upload",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"author",
+								"logo-upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "email",
+								"value": "jane@gmail.com",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "password",
+								"value": "87654321",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"erny@gmail.com\",\n    \"password\": \"33333333\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/author/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"author",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Files",
+			"item": [
+				{
+					"name": "Get public files",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/public/65250e78d74feee61cd5fad19334702a_jane_austen.jpeg",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"public",
+								"65250e78d74feee61cd5fad19334702a_jane_austen.jpeg"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "File upload",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/alex/Pictures/Imágenes/wizarding-world-legacy-link-reward-wallpaper-0eaee25c51d148b5ada70c8944b7e199.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/file-upload",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"file-upload"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get home",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "base_url",
+			"value": "https://node-books-db-git-main-abj1389.vercel.app/",
+			"type": "string",
+			"disabled": true
+		}
+	]
+}
