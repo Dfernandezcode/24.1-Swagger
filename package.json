@@ -1,7 +1,7 @@
 {
   "name": "node-ts-books-db",
   "version": "1.0.0",
-  "description": "Hola este es el repo de node-ts-books-db",
+  "description": "This is the books DB API",
   "main": "index.ts",
   "scripts": {
     "lint": "eslint .",
@@ -21,7 +21,7 @@
     "build": "tsc"
   },
   "keywords": [],
-  "author": "Alejandro Brasoveanu",
+  "author": "Daniel Fernandez",
   "license": "ISC",
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
@@ -34,6 +34,7 @@
     "@types/multer": "^1.4.7",
     "@types/validator": "^13.7.17",
     "@typescript-eslint/eslint-plugin": "^5.59.7",
+    "cross-env": "^7.0.3",
     "eslint": "^8.41.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-config-standard-with-typescript": "^34.0.1",

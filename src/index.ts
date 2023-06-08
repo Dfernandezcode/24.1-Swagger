@@ -21,9 +21,9 @@ import swaggerUiExpress from "swagger-ui-express";
 // const sqlDatabase = await sqlConnect();
 // const datasource = await AppDataSource.initialize();
 
-// Configuración del app
+// Server Configuration
 const PORT = 3000;
-const app = express();
+export const app = express(); // export to be used externally.
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors({ origin: "http://localhost:3000" }));
@@ -97,9 +97,9 @@ app.use((err: ErrorRequestHandler, req: Request, res: Response, next: NextFuncti
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`app levantado en el puerto ${PORT}`);
+export const server = app.listen(PORT, () => {
+  console.log(`Server levantado en el puerto ${PORT}`);
 });
 
 // Some products such as VERCEL requires module exports.
-module.exports = app;
+// module.exports = app;
